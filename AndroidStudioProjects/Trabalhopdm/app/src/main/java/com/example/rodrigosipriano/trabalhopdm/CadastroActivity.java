@@ -10,21 +10,23 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class CadastroActivity extends AppCompatActivity {
-
+    private BancoController crud;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
         Button btncad = (Button) findViewById(R.id.btncad);
-        btncad.setOnClickListener(oncli);
+        btncad.setOnClickListener (oncli);
+
+        crud = new BancoController(getBaseContext());
     }
 
     private OnClickListener oncli = new OnClickListener(){
         @Override
         public void onClick(View view){
             try{
-                BancoController crud = new BancoController(getBaseContext());
+
                 EditText nome = (EditText)findViewById(R.id.nomecad);
                 EditText senha = (EditText)findViewById((R.id.senhacad));
                 String nomeString = nome.getText().toString();

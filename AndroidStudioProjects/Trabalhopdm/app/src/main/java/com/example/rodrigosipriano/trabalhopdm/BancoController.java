@@ -24,15 +24,19 @@ public class BancoController {
 
         db = banco.getWritableDatabase();
         valores = new ContentValues();
-        valores.put(CriaBanco.Usuario.NOME, usuario.getNome());
-        valores.put(CriaBanco.Usuario.SENHA, usuario.getSenha());
+        valores.put(CriaBanco.SENHA, usuario.getSenha());
+        valores.put(CriaBanco.NOME, usuario.getNome());
 
-        resultado = db.insert(CriaBanco.Usuario.TABELA , null, valores);
+        resultado = db.insert(CriaBanco.TABELA , null, valores);
         db.close();
 
         if(resultado == -1)
             return "Erro ao inserir registro";
         else
             return "Registro Inserido com sucesso";
+    }
+
+    public String retornaDado(Usuario usuario){
+        
     }
 }
