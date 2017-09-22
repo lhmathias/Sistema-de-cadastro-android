@@ -17,13 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".DisplayMessageActivity" />
-        <activity android:name=".CadastroActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.cattegory.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".CadastroActivity"/>
+        <activity android:name=".ListarActivity"/>
     </application>
 
 </manifest>

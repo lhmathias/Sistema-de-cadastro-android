@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         Usuario usu = new Usuario();
         Map<String, Object> item = new HashMap();
         item.put("admin", usu);
-        item.put("admin", usu);
+        //item.put("admin", usu);
         users.add(item);
 
         btnok = (Button) findViewById(R.id.btnok);
@@ -103,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(secondActivity);
     }*/
     public void naPressaum(View v){
-            Intent intent = new Intent(this, ListarActivity.class);
-            startActivity(intent);
+        Intent intent = new Intent(MainActivity.this, ListarActivity.class);
+        startActivity(intent);
 
     }
 }

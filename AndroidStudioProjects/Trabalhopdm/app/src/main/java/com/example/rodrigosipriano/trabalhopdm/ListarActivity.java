@@ -23,7 +23,7 @@ public class ListarActivity extends ListActivity{
         String[] origem ={"_id","nome"};
         int[] destino = {R.id.login,R.id.nome};
 
-        adapter = new SimpleAdapter(this,crud.retornaDados(),R.layout.activity_listar,origem,destino);
+        adapter = new SimpleAdapter(ListarActivity.this,crud.retornaDados(),R.layout.activity_listar,origem,destino);
 
         setListAdapter(adapter);
     }

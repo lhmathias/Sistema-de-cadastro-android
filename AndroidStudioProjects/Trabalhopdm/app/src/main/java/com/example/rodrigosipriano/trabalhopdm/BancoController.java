@@ -45,19 +45,19 @@ public class BancoController {
 
     public List<Map<String, Object>> retornaDados (){
         db = banco.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT _id, nome FROM usuario", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM usuarios", null);
         cursor.moveToFirst();
         usuarios = new ArrayList<>();
 
         for(int i =0; i < cursor.getCount(); i++){
             Map<String, Object> item = new HashMap<>();
             String _id = cursor.getString(0);
-            String nome = cursor.getString(1);
-            String senha = cursor.getString(2);
+            String senha = cursor.getString(1);
+            String nome = cursor.getString(2);
 
-            item.put(CriaBanco.ID, "Login: "+CriaBanco.ID);
-            item.put(CriaBanco.NOME, "Nome: "+CriaBanco.NOME);
-            item.put(CriaBanco.SENHA, "Senha: "+CriaBanco.SENHA);
+            item.put(CriaBanco.ID, "Login: "+ _id);
+            //item.put(CriaBanco.SENHA, "Senha: "+ senha);
+            item.put(CriaBanco.NOME, "Nome: "+ nome);
 
             usuarios.add(item);
 
