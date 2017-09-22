@@ -9,11 +9,6 @@ public class Usuario {
     private String senha;
     private int id;
 
-    public Usuario(String nome, String senha){
-        this.setNome(nome);
-        this.setSenha(senha);
-    }
-
     public void setNome(String nome){
         this.nome = nome;
     }

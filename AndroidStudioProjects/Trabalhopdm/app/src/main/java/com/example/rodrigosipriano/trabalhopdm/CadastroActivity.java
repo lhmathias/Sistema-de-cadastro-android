@@ -31,7 +31,9 @@ public class CadastroActivity extends AppCompatActivity {
                 EditText senha = (EditText)findViewById((R.id.senhacad));
                 String nomeString = nome.getText().toString();
                 String senhaString = senha.getText().toString();
-                Usuario user = new Usuario(nomeString, senhaString);
+                Usuario user = new Usuario();
+                user.setNome(nomeString);
+                user.setSenha(senhaString);
                 String resultado;
 
                 resultado = crud.insereDado(user);

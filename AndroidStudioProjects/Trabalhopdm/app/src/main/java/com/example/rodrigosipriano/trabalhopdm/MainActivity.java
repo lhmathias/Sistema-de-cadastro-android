@@ -6,31 +6,42 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     Button btnok;
     Button btncadastro;
-    List<Usuario> users;
+    Button btnlist;
+    private List<Map<String, Object>> users;
+    private SimpleAdapter adapter;
+    private BancoController crud;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        users = new ArrayList<Usuario>();
-        Usuario usu = new Usuario("admin", "admin");
-        users.add(usu);
+        users = new ArrayList<>();
+        Usuario usu = new Usuario();
+        Map<String, Object> item = new HashMap();
+        item.put("admin", usu);
+        item.put("admin", usu);
+        users.add(item);
 
         btnok = (Button) findViewById(R.id.btnok);
         btnok.setOnClickListener(oncli);
 
         btncadastro = (Button) findViewById(R.id.btncadastro);
         btncadastro.setOnClickListener(oncli);
+
+
 
     }
 
@@ -41,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
 
-                     TextView edtnome = (TextView) findViewById(R.id.edtnome);
-                     TextView edtsenha = (TextView) findViewById(R.id.edtsenha);
+                    TextView edtnome = (TextView) findViewById(R.id.edtnome);
+                    TextView edtsenha = (TextView) findViewById(R.id.edtsenha);
 
                     String nome = edtnome.getText().toString();
                     String senha = edtsenha.getText().toString();
@@ -57,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         boolean isTrue = false;
 
                         for (int i = 0; i >= users.size(); i++) {
-                            if (nome.equals(users.get(0).getNome()) && senha.equals(users.get(0).getSenha())){
+                            if (users.get(i).toString() == nome && users.get(i+1).toString() == senha){
                                 isTrue = true;
 
                             }
@@ -91,4 +102,9 @@ public class MainActivity extends AppCompatActivity {
         Intent secondActivity = new Intent(this, DisplayMessageActivity.class);
         startActivity(secondActivity);
     }*/
+    public void naPressaum(View v){
+            Intent intent = new Intent(this, ListarActivity.class);
+            startActivity(intent);
+
+    }
 }

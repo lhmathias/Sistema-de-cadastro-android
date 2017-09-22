@@ -1,8 +1,14 @@
 package com.example.rodrigosipriano.trabalhopdm;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by rodrigo.sipriano on 11/09/2017.
@@ -11,6 +17,7 @@ import android.content.Context;
 public class BancoController {
     private SQLiteDatabase db;
     private CriaBanco banco;
+    private List<Map<String, Object>> usuarios;
 
     public BancoController(Context context){
         banco = new CriaBanco(context);
@@ -36,7 +43,27 @@ public class BancoController {
             return "Registro Inserido com sucesso";
     }
 
-    public String retornaDado(Usuario usuario){
-        
+    public List<Map<String, Object>> retornaDados (){
+        db = banco.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT _id, nome FROM usuario", null);
+        cursor.moveToFirst();
+        usuarios = new ArrayList<>();
+
+        for(int i =0; i < cursor.getCount(); i++){
+            Map<String, Object> item = new HashMap<>();
+            String _id = cursor.getString(0);
+            String nome = cursor.getString(1);
+            String senha = cursor.getString(2);
+
+            item.put(CriaBanco.ID, "Login: "+CriaBanco.ID);
+            item.put(CriaBanco.NOME, "Nome: "+CriaBanco.NOME);
+            item.put(CriaBanco.SENHA, "Senha: "+CriaBanco.SENHA);
+
+            usuarios.add(item);
+
+            cursor.moveToNext();
+        }
+        db.close();
+        return usuarios;
     }
 }
