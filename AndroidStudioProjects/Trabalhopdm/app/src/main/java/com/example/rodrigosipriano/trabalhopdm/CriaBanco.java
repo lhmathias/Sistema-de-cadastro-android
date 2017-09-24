@@ -24,7 +24,7 @@ public class CriaBanco extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE usuarios (_id INTEGER PRIMARY KEY AUTOINCREMENT, senha TEXT, nome TEXT);";
+        String sql = "CREATE TABLE usuarios (_id INTEGER PRIMARY KEY AUTOINCREMENT, senha TEXT, nome TEXT, tipo TEXT, status TEXT);";
         db.execSQL(sql);
     }
 

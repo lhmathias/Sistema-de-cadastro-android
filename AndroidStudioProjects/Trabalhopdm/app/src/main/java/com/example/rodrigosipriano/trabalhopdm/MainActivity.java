@@ -19,7 +19,6 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     Button btnok;
     Button btncadastro;
-    Button btnlist;
     private List<Map<String, Object>> users;
     private SimpleAdapter adapter;
     private BancoController crud;
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         Usuario usu = new Usuario();
         Map<String, Object> item = new HashMap();
         item.put("admin", usu);
-        //item.put("admin", usu);
+        //item.put("admin", usu);\
         users.add(item);
 
         btnok = (Button) findViewById(R.id.btnok);
@@ -64,23 +63,20 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intente);
 
                     } else if(view == btnok){
-
-                        boolean isTrue = false;
-
-                        for (int i = 0; i >= users.size(); i++) {
-                            if (users.get(i).toString() == nome && users.get(i+1).toString() == senha){
-                                isTrue = true;
-
-                            }
-                        }
-
+                        Usuario user = new Usuario();
+                        user.setNome(nome);
+                        user.setSenha(senha);
+                        user.setTipo("124");
+                        user.setStatus("1234");
+                        BancoController crud = new BancoController(getBaseContext());
+                        boolean isTrue = crud.validarUsuario(user);
                         if (isTrue) {
                             Intent intent = new Intent(MainActivity.this, DisplayMessageActivity.class);
 
                                 Bundle bundle = new Bundle();
 
-                                bundle.putString("nome", nome);
-                                bundle.putString("senha", senha);
+                                bundle.putString("nome", user.getNome());
+                                bundle.putString("senha", user.getSenha());
                                 intent.putExtras(bundle);
 
                                 startActivity(intent);
@@ -102,9 +98,5 @@ public class MainActivity extends AppCompatActivity {
         Intent secondActivity = new Intent(this, DisplayMessageActivity.class);
         startActivity(secondActivity);
     }*/
-    public void naPressaum(View v){
-        Intent intent = new Intent(MainActivity.this, ListarActivity.class);
-        startActivity(intent);
 
-    }
 }

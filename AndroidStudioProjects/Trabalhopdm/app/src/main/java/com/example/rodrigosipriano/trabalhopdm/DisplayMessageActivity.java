@@ -10,13 +10,15 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by rodrigo.sipriano on 29/08/2017.
  */
 
 public class DisplayMessageActivity extends AppCompatActivity{
-
+    String txt;
+    String txt2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +29,8 @@ public class DisplayMessageActivity extends AppCompatActivity{
 
         Bundle bundle = intent.getExtras();
 
-        String txt = bundle.getString("txt");
-        String txt2 = bundle.getString("txt2");
+        txt = bundle.getString("txt");
+        txt2 = bundle.getString("txt2");
 
         TextView txtResultado = (TextView) findViewById(R.id.txtResultado);
         txtResultado.setText("Você logou com o usuário " + txt2 + " e senha " + txt);
@@ -41,5 +43,38 @@ public class DisplayMessageActivity extends AppCompatActivity{
 
         ViewGroup layout = (ViewGroup) findViewById(R.id.activity_display_message);
         layout.addView(textView);*/
+
+
+    }
+
+    public void naPressaum(View v){
+        Intent intent = new Intent(DisplayMessageActivity.this, ListarActivity.class);
+        startActivity(intent);
+
+    }
+
+    public void onDel(View v){
+        Usuario user = new Usuario();
+        TextView textNome = (TextView) findViewById(R.id.editnome);
+        TextView textSenha = (TextView) findViewById(R.id.editsenha);
+        String nome = textNome.getText().toString();
+        String senha = textSenha.getText().toString();
+        user.setNome(nome);
+        user.setSenha(senha);
+        BancoController crud = new BancoController(getBaseContext());
+
+        boolean valid = crud.deletar(user);
+        if(valid){
+            Toast.makeText(DisplayMessageActivity.this, "Deletado", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(DisplayMessageActivity.this, "Erro ao deletar", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onAlt(View v){
+        Intent intent = new Intent(DisplayMessageActivity.this, AlterarActivity.class);
+
+        startActivity(intent);
     }
 }

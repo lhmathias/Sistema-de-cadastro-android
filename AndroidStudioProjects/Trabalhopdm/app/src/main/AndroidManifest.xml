@@ -19,6 +19,7 @@
         <activity android:name=".DisplayMessageActivity" />
         <activity android:name=".CadastroActivity"/>
         <activity android:name=".ListarActivity"/>
+        <activity android:name=".AlterarActivity"/>
     </application>
 
 </manifest>

@@ -29,11 +29,17 @@ public class CadastroActivity extends AppCompatActivity {
 
                 EditText nome = (EditText)findViewById(R.id.nomecad);
                 EditText senha = (EditText)findViewById((R.id.senhacad));
+                EditText tipo = (EditText) findViewById(R.id.tipo);
+                EditText status = (EditText) findViewById(R.id.status);
                 String nomeString = nome.getText().toString();
                 String senhaString = senha.getText().toString();
+                String tipoString = tipo.getText().toString();
+                String statusString = status.getText().toString();
                 Usuario user = new Usuario();
                 user.setNome(nomeString);
                 user.setSenha(senhaString);
+                user.setTipo(tipoString);
+                user.setStatus(statusString);
                 String resultado;
 
                 resultado = crud.insereDado(user);
